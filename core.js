@@ -274,7 +274,7 @@ const R = (() => {
       h('button', { onclick: backup }, 'Sauvegarde complète')));
     const head = h('div', { class: 'reghead' },
       h('h2', {}, APP.registerTitle || APP.name),
-      h('div', {}, APP.settings.filter(s => st[s.k]).map(s => h('div', {}, h('b', {}, s.label + ' : '), st[s.k]))),
+      h('div', {}, APP.settings.filter(s => st[s.k] && s.type !== 'textarea').map(s => h('div', {}, h('b', {}, s.label + ' : '), st[s.k]))),
       h('div', { class: 'small' }, `Édité le ${fmtDT(new Date().toISOString())} · période : ${view.from ? 'du ' + fmtD(view.from) : 'depuis la première écriture'} ${view.to ? 'au ' + fmtD(view.to) : 'jusqu\'à ce jour'}`),
       h('div', { class: 'small' }, v.ok ? `Intégrité vérifiée : ${v.n} écritures chaînées, empreinte finale ${v.last.slice(0, 16)}…` : `ALERTE : altération détectée à l'écriture n° ${v.at}`));
     wrap.append(head);
